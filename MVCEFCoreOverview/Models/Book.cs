@@ -9,7 +9,8 @@ namespace MVCEFCoreOverview.Models
 {
     public class Book
     {
-        public int ID { get; set; }
+        [Key]
+        public int Books_Id { get; set; }
 
         [Required]
         [StringLength(200)]
@@ -41,6 +42,12 @@ namespace MVCEFCoreOverview.Models
         public int BookDetailId { get; set; }
 
         public BookDetail BookDetail { get; set; }
+
+        [ForeignKey("Pubplisher")]
+        public int PubplisherId { get; set; }
+        public Publisher Publisher { get; set; }
+
+        public virtual ICollection<BookAuthor>  BookAuthors { get; set; }
 
         [NotMapped]
         public string AutherFullName

@@ -8,11 +8,12 @@ namespace MVCEFCoreOverview.Models
 {
     public class Publisher
     {
-        [Key]
         public int PubplisherId { get; set; }
 
         [StringLength(50)]
         public string Name { get; set; }
+
+        public List<Book> Books { get; set; }
 
     }
 }

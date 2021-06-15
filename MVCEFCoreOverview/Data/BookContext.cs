@@ -18,6 +18,7 @@ namespace MVCEFCoreOverview.Data
         public DbSet<Person> pers { get; set; }
         public DbSet<BookDetail> details { get; set; }
         public DbSet<Publisher> publishers { get; set; }
+        public DbSet<Authors> Authors { get; set; }
 
         // use this code if you don't want to use Json stirngs solution1 - int startup
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

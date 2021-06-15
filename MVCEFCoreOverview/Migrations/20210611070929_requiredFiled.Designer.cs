@@ -3,14 +3,16 @@ using MVCEFCoreOverview.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVCEFCoreOverview.Migrations
 {
     [DbContext(typeof(BookContext))]
-    partial class BookContextModelSnapshot : ModelSnapshot
+    [Migration("20210611070929_requiredFiled")]
+    partial class requiredFiled
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,15 +32,7 @@ namespace MVCEFCoreOverview.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("AutherFirstName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("AutherLastName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("BookDetailId")
+                    b.Property<int>("Counter")
                         .HasColumnType("int");
 
                     b.Property<string>("Genre")
@@ -58,30 +52,11 @@ namespace MVCEFCoreOverview.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<int>("YearPublished")
-                        .HasColumnType("int")
-                        .HasColumnName("PublishingYear");
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("BookDetailId")
-                        .IsUnique();
-
                     b.ToTable("books");
-                });
-
-            modelBuilder.Entity("MVCEFCoreOverview.Models.BookDetail", b =>
-                {
-                    b.Property<int>("BookDetailId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("Weight")
-                        .HasColumnType("float");
-
-                    b.HasKey("BookDetailId");
-
-                    b.ToTable("details");
                 });
 
             modelBuilder.Entity("MVCEFCoreOverview.Models.Person", b =>
@@ -110,38 +85,6 @@ namespace MVCEFCoreOverview.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("pers");
-                });
-
-            modelBuilder.Entity("MVCEFCoreOverview.Models.Publisher", b =>
-                {
-                    b.Property<int>("PubplisherId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("PubplisherId");
-
-                    b.ToTable("publishers");
-                });
-
-            modelBuilder.Entity("MVCEFCoreOverview.Models.Book", b =>
-                {
-                    b.HasOne("MVCEFCoreOverview.Models.BookDetail", "BookDetail")
-                        .WithOne("Book")
-                        .HasForeignKey("MVCEFCoreOverview.Models.Book", "BookDetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BookDetail");
-                });
-
-            modelBuilder.Entity("MVCEFCoreOverview.Models.BookDetail", b =>
-                {
-                    b.Navigation("Book");
                 });
 #pragma warning restore 612, 618
         }

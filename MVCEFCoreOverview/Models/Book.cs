@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,7 +9,6 @@ namespace MVCEFCoreOverview.Models
 {
     public class Book
     {
-
         public int ID { get; set; }
 
         [Required]
@@ -22,16 +22,33 @@ namespace MVCEFCoreOverview.Models
         [Required]
         public int Pages { get; set; }
 
-        [Required]
+        [Column("PublishingYear")]
         public int YearPublished { get; set; }
 
         [Required]
         [StringLength(50)]
         public string Auther { get; set; }
 
+
+        [StringLength(50)]
+        public string AutherFirstName { get; set; }
+
+        [StringLength(50)]
+        public string AutherLastName { get; set; }
         public bool IsBestSeller { get; set; }
 
-        public int Counter { get; set; }
+        [ForeignKey("BookDetail")]
+        public int BookDetailId { get; set; }
+
+        public BookDetail BookDetail { get; set; }
+
+        [NotMapped]
+        public string AutherFullName
+        {
+            get { return $" {AutherFirstName} + {AutherLastName}"; }
+        }
+
+
 
     }
 }

@@ -15,12 +15,15 @@ namespace MVCEFCoreOverview.Data
         }
 
         public DbSet<Book> books { get; set; }
+        public DbSet<Person> pers { get; set; }
+        public DbSet<BookDetail> details { get; set; }
+        public DbSet<Publisher> publishers { get; set; }
 
         // use this code if you don't want to use Json stirngs solution1 - int startup
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    optionsBuilder.UseSqlServer("Server=LAPTOP-MTGLS0HR\\SQLEXPRESS;Database=BooksEF;Integrated Security=True;");
-                                                //.\\SQLEXPRESS; you can use this server name instead of your full server name
+        //.\\SQLEXPRESS; you can use this server name instead of your full server name
         //    base.OnConfiguring(optionsBuilder);
         //}
     }

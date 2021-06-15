@@ -3,14 +3,16 @@ using MVCEFCoreOverview.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVCEFCoreOverview.Migrations
 {
     [DbContext(typeof(BookContext))]
-    partial class BookContextModelSnapshot : ModelSnapshot
+    [Migration("20210611094451_ClassBookDetailAdded")]
+    partial class ClassBookDetailAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,22 +112,6 @@ namespace MVCEFCoreOverview.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("pers");
-                });
-
-            modelBuilder.Entity("MVCEFCoreOverview.Models.Publisher", b =>
-                {
-                    b.Property<int>("PubplisherId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("PubplisherId");
-
-                    b.ToTable("publishers");
                 });
 
             modelBuilder.Entity("MVCEFCoreOverview.Models.Book", b =>
